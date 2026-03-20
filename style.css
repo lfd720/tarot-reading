@@ -12,13 +12,315 @@ body {
     overflow-x: hidden;
 }
 
-/* 神秘的紫色渐变主题 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInDown 1s ease-out;
+}
+
 .title {
     font-size: 3rem;
     background: linear-gradient(45deg, #f4d03f, #e74c3c, #9b59b6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(155, 89, 182, 0.3);
+    margin-bottom: 1rem;
 }
 
-/* 卡牌 3D 翻转动画 */
+.subtitle {
+    font-size: 1.2rem;
+    color: #b8b8b8;
+    font-style: italic;
+}
+
+.draw-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.draw-btn {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    color: white;
+    border: none;
+    padding: 1.5rem 3rem;
+    font-size: 1.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(155, 89, 182, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.draw-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(155, 89, 182, 0.6);
+}
+
+.draw-btn:active {
+    transform: translateY(0);
+}
+
+.draw-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.draw-btn:hover::before {
+    left: 100%;
+}
+
+.btn-icon {
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+.instruction {
+    margin-top: 1.5rem;
+    color: #a8a8a8;
+    font-size: 1rem;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.card-slot {
+    width: 250px;
+    height: 400px;
+    perspective: 1000px;
+}
+
+.card-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    border: 3px solid #9b59b6;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.placeholder-icon {
+    font-size: 4rem;
+    color: #9b59b6;
+    margin-bottom: 1rem;
+}
+
+.placeholder-text {
+    color: #b8b8b8;
+    font-size: 1.1rem;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
 .card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-front {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #f4d03f;
+}
+
+.card-front::after {
+    content: '🔮';
+    font-size: 5rem;
+}
+
+.card-back {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    transform: rotateY(180deg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #e74c3c;
+    overflow: hidden;
+}
+
+.card-image {
+    font-size: 6rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.card-name {
+    font-size: 1.4rem;
+    color: #f4d03f;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.card-number {
+    font-size: 0.9rem;
+    color: #e74c3c;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.card-meaning {
+    font-size: 0.95rem;
+color: #c8c8c8;
+line-height: 1.6;
+text-align: center;
+flex-grow: 1;
+}
+
+.reading-section {
+background: rgba(255, 255, 255, 0.05);
+border-radius: 20px;
+padding: 2rem;
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.1);
+animation: fadeIn 1s ease-out;
+}
+
+.reading-title {
+text-align: center;
+font-size: 2rem;
+color: #f4d03f;
+margin-bottom: 2rem;
+}
+
+.reading-content {
+max-width: 800px;
+margin: 0 auto;
+}
+
+.reading-card {
+background: rgba(155, 89, 182, 0.1);
+border-left: 4px solid #9b59b6;
+padding: 1.5rem;
+margin-bottom: 1.5rem;
+border-radius: 10px;
+}
+
+.reading-card h3 {
+color: #e74c3c;
+margin-bottom: 0.5rem;
+font-size: 1.3rem;
+}
+
+.reading-card p {
+color: #c8c8c8;
+line-height: 1.8;
+}
+
+footer {
+text-align: center;
+margin-top: 3rem;
+padding: 2rem;
+color: #6c7a89;
+font-size: 0.9rem;
+font-style: italic;
+}
+
+@keyframes fadeInDown {
+from {
+opacity: 0;
+transform: translateY(-30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@keyframes fadeIn {
+from {
+opacity: 0;
+}
+to {
+opacity: 1;
+}
+}
+
+@keyframes pulse {
+0%, 100% {
+transform: scale(1);
+}
+50% {
+transform: scale(1.1);
+}
+}
+
+body::before {
+content: '';
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-image:
+radial-gradient(circle at 20% 80%, rgba(155, 89, 182, 0.1) 0%, transparent 50%),
+radial-gradient(circle at 80% 20%, rgba(231, 76, 60, 0.1) 0%, transparent 50%),
+radial-gradient(circle at 40% 40%, rgba(244, 208, 63, 0.05) 0%, transparent 50%);
+pointer-events: none;
+z-index: -1;
+}
+
+@media (max-width: 768px) {
+.title {
+font-size: 2rem;
+}
+.subtitle {
+font-size: 1rem;
+}
+.cards-container {
+gap: 1rem;
+}
+.card-slot {
+width: 200px;
+height: 320px;
+}
+.draw-btn {
+padding: 1.2rem 2rem;
+font-size: 1.1rem;
+}
+}
